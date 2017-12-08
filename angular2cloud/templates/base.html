@@ -35,7 +35,12 @@
         {% include "sidebar.html" %}
         <div class="content-inner">
           <!-- Page Header-->
-          {% block page_header %}{% endblock %}
+                    <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">{% block page_header %}{% endblock %}</h2>
+            </div>
+          </header>
           {% block content %}{% endblock %}
           <!-- Page Footer-->
           {% include 'footer.html' %}
