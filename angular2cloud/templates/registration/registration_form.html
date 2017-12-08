@@ -1,0 +1,36 @@
+{% extends "registration/registration_base.html" %}
+{% block title %}Create a new account{% endblock %}
+
+{% block content %}
+<form id="register-form" method="post" action="">
+    {% csrf_token %}
+    <div class="form-group">
+        <input id="register-username" type="text" name="username" required class="input-material">
+        <label for="register-username" class="label-material">Username</label>
+        <label class="error" for="register-username">{{ form.username.errors }}</label>
+    </div>
+    <div class="form-group">
+        <input id="register-email" type="email" name="email" required class="input-material">
+        <label for="register-email" class="label-material">Email Address </label>
+        <label class="error" for="register-username">{{ form.email.errors }}</label>
+    </div>
+    <div class="form-group">
+        <input id="register-passowrd" type="password" name="password1" required class="input-material">
+        <label for="register-passowrd" class="label-material">Password </label>
+        <label class="error" for="register-username">{{ form.password1.errors }}</label>
+    </div>
+    <div class="form-group">
+        <input id="register-passowrd" type="password" name="password2" required class="input-material">
+        <label for="register-passowrd" class="label-material">Confirmation Password </label>
+        <label class="error" for="register-username">{{ form.password2.errors }}</label>
+    </div>
+    <div class="form-group terms-conditions">
+        <input id="license" type="checkbox" class="checkbox-template">
+        <label for="license">Agree the terms and policy</label>
+    </div>
+    <input id="register" type="submit" value="Register" class="btn btn-primary">
+</form>
+<small>Already have an account? </small>
+<a href="login.html" class="signup">Login</a>
+
+{% endblock %}
