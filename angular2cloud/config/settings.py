@@ -33,11 +33,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'dashboard.apps.DashboardConfig'
 ]
 
@@ -122,3 +124,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR, ]
+
+#Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#Crispy Forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#Registration
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login/'
