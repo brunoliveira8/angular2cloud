@@ -4,7 +4,7 @@ from django.core.validators import FileExtensionValidator
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'user_{0}/{1}'.format(instance.user.id, filename)
+    return 'user_{0}/{1}/{2}'.format(instance.user.id, instance.domain.lower(), filename)
 
 # Create your models here.
 class Project(models.Model):
@@ -26,4 +26,9 @@ class Project(models.Model):
         validators=[FileExtensionValidator(allowed_extensions=['zip'])],
         help_text = "Upload the dist folder of your Angular project as a zip file."
     )
+    def save(self, *args, **kwargs):
+        self.domain = self.domain.lower()
+        return super(Project, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return "{user}_{domain}".format(user=self.user, domain=self.domain)
