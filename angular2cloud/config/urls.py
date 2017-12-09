@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from dashboard.views import index
+from dashboard.views import index, ProjectCreate
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^$', index, name='index')
+    url(r'^$', index, name='index'),
+    url('project/add/', ProjectCreate.as_view(), name='project-add'),
 ]

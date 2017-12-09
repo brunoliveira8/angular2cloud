@@ -1,9 +1,11 @@
+{% load static %}
 <nav class="side-navbar">
     <!-- Sidebar Header-->
     <div class="sidebar-header d-flex align-items-center">
+        <div class="avatar"><img src="{% static 'img/avatar-1.jpg' %}" alt="..." class="img-fluid rounded-circle"></div>
         <div class="title">
-            <h1 class="h4">User</h1>
-            <p>user@email.com</p>
+            <h1 class="h4">{{user.username}}</h1>
+            <p>Web Designer</p>
         </div>
     </div>
     <!-- Sidebar Navidation Menus-->
@@ -20,7 +22,7 @@
                     <a href="#">Project 2</a>
                 </li>
                 <li>
-                    <a href="#">New Project</a>
+                    <a href="{% url 'project-add' %}">New Project</a>
                 </li>
             </ul>
         </li>
