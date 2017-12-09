@@ -1,10 +1,12 @@
+import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
+from django.urls import reverse
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'user_{0}/{1}/{2}'.format(instance.user.id, instance.domain.lower(), filename)
+    return '{0}/{1}/{2}'.format(instance.user.username.lower(), instance.domain.lower(), filename)
 
 # Create your models here.
 class Project(models.Model):
@@ -26,9 +28,18 @@ class Project(models.Model):
         validators=[FileExtensionValidator(allowed_extensions=['zip'])],
         help_text = "Upload the dist folder of your Angular project as a zip file."
     )
+
+
     def save(self, *args, **kwargs):
         self.domain = self.domain.lower()
         return super(Project, self).save(*args, **kwargs)
+
+
+    def get_absolute_url(self):
+        return reverse('project-update', kwargs={'slug': self.domain})
+
+    def filename(self):
+        return os.path.basename(self.file.name)
 
     def __str__(self):
         return "{user}_{domain}".format(user=self.user, domain=self.domain)

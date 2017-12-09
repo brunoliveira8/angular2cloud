@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block page_header %} Project {{ project.name }} <a href="{% url 'project-add' %}" class="btn btn-danger pull-right"> Delete Project</a>{% endblock %}
+{% block content %}
+<section class="client">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- Work Amount  -->
+            <div class="col-lg-4">
+              <div class="work-amount card">
+                <div class="card-body">
+                  <h3>Control Panel</h3><small>Go to application: <a href="https://{{project.domain}}.angular2cloud.com">{{project.domain}}.angular2cloud.com</a> </small>
+                  <div class="text-center">
+                        <br>
+                        {% if project.status == "RN" %}
+                        <button class="btn btn-danger"> Stop Application</button>
+                        {% else %}
+                        <button class="btn btn-success"> Start Application</button>
+                        {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Horizontal Form-->
+            <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h3 class="h4">Update project files</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-horizontal" method="post" action="" enctype=multipart/form-data>
+                                {% csrf_token %}
+                                {% for hidden_field in form.hidden_fields %} {{ hidden_field }} {% endfor %}
+                                {% if form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %} {{ error }} {% endfor %}
+                                </div>
+                                {% endif %}
+                                <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">Source</label>
+                                    <div class="col-sm-9">
+                                        {{ form.source }} {% for error in form.source.errors %}
+                                        <small class="form-text text-danger">{{ error }}</small>
+                                        {% endfor %}
+                                        <small class="form-text">{{ form.source.help_text }}</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-9 offset-sm-3">
+                                        <input type="submit" value="Update" class="btn btn-primary">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+      </section>
+<section class="forms">
+    <div class="container-fluid">
+        <div class="row">
+
+        </div>
+    </div>
+</section>
+{% endblock %}

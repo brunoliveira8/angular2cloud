@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 from django.views.generic.edit import CreateView
 from .models import Project
 
@@ -14,11 +14,19 @@ class ProjectList(ListView):
     def get_queryset(self):
         return Project.objects.filter(user=self.request.user)
 
+class ProjectUpdate(UpdateView):
+    context_object_name = 'project'
+    slug_field = 'domain'
+    template_name_suffix = '_update_form'
+    fields = ['source']
+    model = Project
+    def get_queryset(self):
+        return Project.objects.filter(user=self.request.user)
+
 
 class ProjectCreate(CreateView):
     model = Project
     fields = ['name', 'domain', 'source']
-    success_url = "/"
 
     def form_valid(self, form):
         n_projects = len(Project.objects.filter(user=self.request.user))

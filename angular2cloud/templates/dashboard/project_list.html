@@ -3,6 +3,34 @@
 {% block content %}
 <section class="projects">
   <div class="container-fluid">
+    {% if not projects %}
+    <section class="updates no-padding-top">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- Recent Updates-->
+            <div class="col-lg-8 offset-lg-2">
+              <div class="recent-updates card">
+                <div class="card-header">
+                  <h3 class="h4">Notifications</h3>
+                </div>
+                <div class="card-body no-padding">
+                  <!-- Item-->
+                  <div class="item d-flex justify-content-between">
+                    <div class="info d-flex">
+                      <div class="icon"><i class="icon-rss-feed"></i></div>
+                      <div class="title">
+                        <h5>Ops. You don't have any projects.</h5>
+                        <p>Start to create a new project for free now!</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
     <!-- Project-->
     {% for project in projects %}
     <div class="project">
@@ -13,7 +41,7 @@
               <img src="https://d19m59y37dris4.cloudfront.net/admin/1-1/img/project-2.jpg" alt="..." class="img-fluid">
             </div>
             <div class="text">
-              <h3 class="h4">{{project.name}}</h3>
+              <h3 class="h4"><a href="{% url 'project-update' slug=project.domain %}">{{project.name}}</a></h3>
               <small>{{project.domain}}.angular2cloud.com</small>
             </div>
           </div>
