@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block page_header %} Home <a href="{% url 'project-add' %}" class="btn btn-primary pull-right"> New Project</a>{% endblock %}
+{% block content %}
+<section class="projects">
+  <div class="container-fluid">
+    <!-- Project-->
+    {% for project in projects %}
+    <div class="project">
+      <div class="row bg-white has-shadow">
+        <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+          <div class="project-title d-flex align-items-center">
+            <div class="image has-shadow">
+              <img src="https://d19m59y37dris4.cloudfront.net/admin/1-1/img/project-2.jpg" alt="..." class="img-fluid">
+            </div>
+            <div class="text">
+              <h3 class="h4">{{project.name}}</h3>
+              <small>{{project.domain}}.angular2cloud.com</small>
+            </div>
+          </div>
+          <div class="project-date">
+            <span class="hidden-sm-down">Created at {{project.created_at}}</span>
+          </div>
+        </div>
+        <div class="right-col col-lg-6 d-flex align-items-center">
+          <div class="time">
+            <i class="fa fa-clock-o"></i>Last update at {{project.updated_at}} </div>
+          <div class="comments">
+            <i class="fa fa-eye"></i>Status: {{project.get_status_display}}</div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

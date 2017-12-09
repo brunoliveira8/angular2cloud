@@ -20,7 +20,7 @@ class Project(models.Model):
     status = models.CharField(
         max_length=2,
         choices=APP_STATUS,
-        default='ST ',
+        default='ST',
     )
     source = models.FileField(upload_to=user_directory_path,
         validators=[FileExtensionValidator(allowed_extensions=['zip'])],

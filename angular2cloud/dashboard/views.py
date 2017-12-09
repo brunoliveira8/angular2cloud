@@ -1,12 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from .models import Project
 
 # Create your views here.
-@login_required
 def index(request):
-    return render(request, 'dashboard/index.html')
+    return redirect('project-list')
+
+
+class ProjectList(ListView):
+    context_object_name = 'projects'
+    def get_queryset(self):
+        return Project.objects.filter(user=self.request.user)
+
 
 class ProjectCreate(CreateView):
     model = Project
