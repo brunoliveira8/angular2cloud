@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
+    'widget_tweaks',
     'dashboard.apps.DashboardConfig'
 ]
 
@@ -127,9 +127,6 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 
 #Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-#Crispy Forms
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #Registration
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.

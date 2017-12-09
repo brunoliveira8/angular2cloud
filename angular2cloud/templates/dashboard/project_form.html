@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block page_header %} Create new project {% endblock %}
+{% block content %}
+<section class="forms">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Horizontal Form-->
+            <div class="offset-lg-2 col-lg-8">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <h3 class="h4">Project</h3>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-horizontal" method="post" action="">
+                            {% csrf_token %}
+                            {% for hidden_field in form.hidden_fields %}
+                                {{ hidden_field }}
+                            {% endfor %}
+                            {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in form.non_field_errors %} {{ error }} {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% for field in form %}
+                            {% if field.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ field.errors }}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">{{form.name.label}}</label>
+                                <div class="col-sm-9">
+                                    {% render_field form.name class="form-control"%}
+                                    <small class="form-text">You can choose any name for your project.</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">Domain</label>
+                                <div class="col-sm-9">
+                                    {% render_field form.domain class="form-control" %}
+                                    <small class="form-text">Your domain must be unique. Your project will be available at yourdomain.angular2cloud.com</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9 offset-sm-3">
+                                    <input type="submit" value="Create" class="btn btn-primary">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
