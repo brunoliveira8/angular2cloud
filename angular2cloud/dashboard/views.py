@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
 from .models import Project
 
 # Create your views here.
+@login_required
 def index(request):
     return render(request, 'dashboard/index.html')
 

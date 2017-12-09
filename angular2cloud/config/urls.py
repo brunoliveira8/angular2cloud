@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', index, name='index'),
-    url('project/add/', ProjectCreate.as_view(), name='author-add'),
+    url('project/add/', ProjectCreate.as_view(), name='project-add'),
 ]
