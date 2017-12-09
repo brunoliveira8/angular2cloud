@@ -8,7 +8,7 @@ def index(request):
 
 class ProjectCreate(CreateView):
     model = Project
-    fields = ['name', 'domain']
+    fields = ['name', 'domain', 'source']
     success_url = "/"
 
     def form_valid(self, form):
