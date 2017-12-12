@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, UpdateView
-from django.views.generic.edit import CreateView
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Project
 
 # Create your views here.
@@ -11,15 +12,6 @@ def index(request):
 
 class ProjectList(ListView):
     context_object_name = 'projects'
-    def get_queryset(self):
-        return Project.objects.filter(user=self.request.user)
-
-class ProjectUpdate(UpdateView):
-    context_object_name = 'project'
-    slug_field = 'domain'
-    template_name_suffix = '_update_form'
-    fields = ['source']
-    model = Project
     def get_queryset(self):
         return Project.objects.filter(user=self.request.user)
 
@@ -35,3 +27,22 @@ class ProjectCreate(CreateView):
             return super().form_invalid(form)
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class ProjectUpdate(UpdateView):
+    context_object_name = 'project'
+    slug_field = 'domain'
+    template_name_suffix = '_update_form'
+    fields = ['source']
+    model = Project
+    def get_queryset(self):
+        return Project.objects.filter(user=self.request.user)
+
+
+
+class ProjectDelete(DeleteView):
+    model = Project
+    context_object_name = 'project'
+    slug_field = 'domain'
+    success_url = reverse_lazy('project-list')
+

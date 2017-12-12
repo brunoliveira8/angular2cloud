@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
-{% block page_header %} Project {{ project.name }} <a href="{% url 'project-add' %}" class="btn btn-danger pull-right"> Delete Project</a>{% endblock %}
+{% block page_header %} Project {{ project.name }} <a href="{% url 'project-delete' slug=project.domain%}" class="btn btn-danger pull-right"> Delete Project</a>{% endblock %}
 {% block content %}
 <section class="client">
         <div class="container-fluid">

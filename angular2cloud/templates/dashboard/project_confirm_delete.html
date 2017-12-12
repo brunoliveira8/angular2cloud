@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block page_header %}Delete Project {% endblock %} {% block content %}
+<section class="projects">
+    <div class="container-fluid">
+        <section class="updates no-padding-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Recent Updates-->
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="overdue card">
+                            <div class="card-header">
+                                <h3 class="h4">Are you sure you want to delete "{{ project.name }}"?</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <a href="{% url 'project-update' slug=project.domain %}" class="btn btn-danger">Cancel</a>
+                                        <input type="submit" class="btn btn-success" value="Confirm" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock %}
