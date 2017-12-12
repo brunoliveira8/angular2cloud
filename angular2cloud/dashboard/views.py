@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
+from django.views import View
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
 from .models import Project
+import docker
 
 # Create your views here.
 def index(request):
@@ -39,10 +41,25 @@ class ProjectUpdate(UpdateView):
         return Project.objects.filter(user=self.request.user)
 
 
-
 class ProjectDelete(DeleteView):
     model = Project
     context_object_name = 'project'
     slug_field = 'domain'
     success_url = reverse_lazy('project-list')
 
+
+class ProjectActivate(View):
+    def post(self, request):
+        slug = request.POST['slug']
+        project = get_object_or_404(Project, user=request.user, domain=slug)
+        client = docker.from_env()
+        ct = client.containers.get('flamboyant_edison')
+        if project.status == 'RN':
+            ct.stop()
+            project.status = 'ST'
+            project.save()
+        else:
+            ct.start()
+            project.status = 'RN'
+            project.save()
+        return redirect('project-update', slug=slug)

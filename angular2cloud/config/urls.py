@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from dashboard.views import index, ProjectList, ProjectCreate, ProjectDelete, ProjectUpdate
+from dashboard.views import index, ProjectList, ProjectCreate, ProjectDelete, ProjectUpdate, ProjectActivate
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     url('project/add/', ProjectCreate.as_view(), name='project-add'),
     url('project/update/(?P<slug>[-\w]+)/', ProjectUpdate.as_view(), name='project-update'),
     url('project/delete/(?P<slug>[-\w]+)/', ProjectDelete.as_view(), name='project-delete'),
+    url('project/activate/', ProjectActivate.as_view(), name='project-activate'),
 ]

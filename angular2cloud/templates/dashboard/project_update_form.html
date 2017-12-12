@@ -12,11 +12,15 @@
                   <h3>Control Panel</h3><small>Go to application: <a href="https://{{project.domain}}.angular2cloud.com">{{project.domain}}.angular2cloud.com</a> </small>
                   <div class="text-center">
                         <br>
-                        {% if project.status == "RN" %}
-                        <button class="btn btn-danger"> Stop Application</button>
-                        {% else %}
-                        <button class="btn btn-success"> Start Application</button>
-                        {% endif %}
+                        <form method="post" action="{% url 'project-activate' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="slug" value="{{project.domain}}">
+                            {% if project.status == "RN" %}
+                            <input type="submit" class="btn btn-danger" value="Stop Application">
+                            {% else %}
+                            <input type="submit" class="btn btn-success" value="Start Application">
+                            {% endif %}
+                        </form>
                   </div>
                 </div>
               </div>
