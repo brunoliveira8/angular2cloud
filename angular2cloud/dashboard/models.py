@@ -1,12 +1,14 @@
 import os
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
-from django.urls import reverse
+
+from .storage import OverwriteStorage
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return '{0}/{1}/{2}'.format(instance.user.username.lower(), instance.domain.lower(), filename)
+    return '{0}/{1}/dist.zip'.format(instance.user.username.lower(), instance.domain.lower(), filename)
 
 # Create your models here.
 class Project(models.Model):
@@ -22,17 +24,18 @@ class Project(models.Model):
     status = models.CharField(
         max_length=2,
         choices=APP_STATUS,
-        default='ST',
+        default='RN',
     )
     source = models.FileField(upload_to=user_directory_path,
         validators=[FileExtensionValidator(allowed_extensions=['zip'])],
+        storage=OverwriteStorage(),
         help_text = "Upload the dist folder of your Angular project as a zip file."
     )
 
 
     def save(self, *args, **kwargs):
         self.domain = self.domain.lower()
-        return super(Project, self).save(*args, **kwargs)
+        super(Project, self).save(*args, **kwargs)
 
 
     def get_absolute_url(self):
