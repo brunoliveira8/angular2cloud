@@ -1,11 +1,14 @@
+import docker
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
+
 from .models import Project
-import docker
+from .utils import start_container, stop_container
 
 # Create your views here.
 def index(request):
@@ -52,14 +55,12 @@ class ProjectActivate(View):
     def post(self, request):
         slug = request.POST['slug']
         project = get_object_or_404(Project, user=request.user, domain=slug)
-        client = docker.from_env()
-        ct = client.containers.get('flamboyant_edison')
         if project.status == 'RN':
-            ct.stop()
+            stop_container(project)
             project.status = 'ST'
-            project.save()
+            project.save(update_fields=['status'])
         else:
-            ct.start()
+            start_container(project)
             project.status = 'RN'
-            project.save()
+            project.save(update_fields=['status'])
         return redirect('project-update', slug=slug)
