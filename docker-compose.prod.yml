@@ -13,6 +13,7 @@ services:
       - a2c-static:$HOME/static
     networks:
       - back
+    env_file: .env
     expose:
       - "8000"
     command: bash initialize.sh
