@@ -2,7 +2,7 @@ version: '2'
 services:
   app:
     restart: always
-    build: a2c-app
+    image: a2c-app
     container_name: a2c-app
     depends_on:
        - postgres
@@ -21,7 +21,7 @@ services:
 
   nginx:
     restart: always
-    build: a2c-nginx-app
+    image: a2c-nginx-app
     container_name: a2c-nginx-app
     volumes:
       - /var/www/html:/usr/share/nginx/html
