@@ -1,0 +1,61 @@
+version: '2'
+services:
+  app:
+    restart: always
+    build: .
+    container_name: a2c-app
+    depends_on:
+       - postgres
+    links:
+      - postgres:postgres
+    volumes:
+      - ./angular2cloud:/code
+      - a2c-static:/www/static
+    expose:
+      - "8000"
+    command: bash initialize.sh
+
+
+
+  nginx:
+    restart: always
+    build: ./containers/nginx/
+    container_name: a2c-nginx-app
+    volumes:
+      - ./angular2cloud/static:/usr/share/nginx/html
+    volumes_from:
+      - web:ro
+    links:
+      - web:web
+    environment:
+      - VIRTUAL_HOST=test.angular2cloud.com
+    networks:
+      - reverse-proxy
+      - back
+
+  postgres:
+    restart: always
+    image: postgres
+    container_name: a2c-postgres
+    env_file: .env
+    expose:
+      - "5432"
+    volumes:
+      - a2c-pgdata:/var/lib/postgresql/data/
+    networks:
+      - back
+
+
+volumes:
+    a2c-pgdata:
+        external: true
+    a2c-static:
+        external: true
+
+
+networks:
+  reverse-proxy:
+    external:
+      name: reverse-proxy
+  back:
+    driver: bridge

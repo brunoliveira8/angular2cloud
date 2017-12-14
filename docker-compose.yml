@@ -1,0 +1,30 @@
+version: '2'
+services:
+  app:
+    restart: always
+    build: .
+    container_name: a2c-app
+    depends_on:
+       - postgres
+    links:
+      - postgres:postgres
+    volumes:
+      - ./angular2cloud:/code
+    ports:
+      - "8000:8000"
+    env_file: .env
+    command: python manage.py runserver 0.0.0.0:8000
+
+  postgres:
+    restart: always
+    image: postgres
+    env_file: .env
+    expose:
+      - "5432"
+    volumes:
+      - a2c-pgdata:/var/lib/postgresql/data/
+
+
+volumes:
+    a2c-pgdata:
+        external: true
