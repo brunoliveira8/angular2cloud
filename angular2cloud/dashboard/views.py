@@ -6,6 +6,7 @@ from django.views import View
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .models import Project
 from .utils import start_container, stop_container
@@ -15,12 +16,14 @@ def index(request):
     return redirect('project-list')
 
 
+@method_decorator(login_required, name='dispatch')
 class ProjectList(ListView):
     context_object_name = 'projects'
     def get_queryset(self):
         return Project.objects.filter(user=self.request.user)
 
 
+@method_decorator(login_required, name='dispatch')
 class ProjectCreate(CreateView):
     model = Project
     fields = ['name', 'domain', 'source']
@@ -34,6 +37,7 @@ class ProjectCreate(CreateView):
         return super().form_valid(form)
 
 
+@method_decorator(login_required, name='dispatch')
 class ProjectUpdate(UpdateView):
     context_object_name = 'project'
     slug_field = 'domain'
@@ -44,6 +48,7 @@ class ProjectUpdate(UpdateView):
         return Project.objects.filter(user=self.request.user)
 
 
+@method_decorator(login_required, name='dispatch')
 class ProjectDelete(DeleteView):
     model = Project
     context_object_name = 'project'
@@ -51,6 +56,7 @@ class ProjectDelete(DeleteView):
     success_url = reverse_lazy('project-list')
 
 
+@method_decorator(login_required, name='dispatch')
 class ProjectActivate(View):
     def post(self, request):
         slug = request.POST['slug']
