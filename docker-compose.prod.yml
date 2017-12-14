@@ -11,6 +11,7 @@ services:
     volumes:
       - ./angular2cloud:/code
       - a2c-static:/www/static
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - back
     env_file: .env
