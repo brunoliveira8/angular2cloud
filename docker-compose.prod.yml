@@ -10,7 +10,7 @@ services:
       - postgres:postgres
     volumes:
       - ./angular2cloud:/code
-      - a2c-static:$HOME/static
+      - a2c-static:/www/static
     networks:
       - back
     env_file: .env
