@@ -2,7 +2,7 @@ version: '2'
 services:
   app:
     restart: always
-    build: .
+    build: a2c-app
     container_name: a2c-app
     depends_on:
        - postgres
@@ -10,7 +10,9 @@ services:
       - postgres:postgres
     volumes:
       - ./angular2cloud:/code
-      - a2c-static:/www/static
+      - a2c-static:$HOME/static
+    networks:
+      - back
     expose:
       - "8000"
     command: bash initialize.sh
@@ -19,16 +21,18 @@ services:
 
   nginx:
     restart: always
-    build: ./containers/nginx/
+    build: a2c-nginx-app
     container_name: a2c-nginx-app
     volumes:
-      - ./angular2cloud/static:/usr/share/nginx/html
+      - /var/www/html:/usr/share/nginx/html
     volumes_from:
-      - web:ro
+      - app:ro
     links:
-      - web:web
+      - app:app
     environment:
-      - VIRTUAL_HOST=test.angular2cloud.com
+      - VIRTUAL_HOST=angular2cloud.com,www.angular2cloud.com
+      - LETSENCRYPT_EMAIL=cloudangular@gmail.com
+      - LETSENCRYPT_HOST=angular2cloud.com,www.angular2cloud.com
     networks:
       - reverse-proxy
       - back
