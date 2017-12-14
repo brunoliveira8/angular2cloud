@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -38,12 +39,14 @@ class ProjectCreate(CreateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class ProjectUpdate(UpdateView):
+class ProjectUpdate(SuccessMessageMixin, UpdateView):
     context_object_name = 'project'
     slug_field = 'domain'
     template_name_suffix = '_update_form'
     fields = ['source']
     model = Project
+    success_message = "The source code was updated successfully!"
+
     def get_queryset(self):
         return Project.objects.filter(user=self.request.user)
 
