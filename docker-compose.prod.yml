@@ -14,6 +14,8 @@ services:
     networks:
       - back
     env_file: .env
+    environment:
+      - ALLOWED_HOST=.angular2cloud.com
     expose:
       - "8000"
     command: bash initialize.sh

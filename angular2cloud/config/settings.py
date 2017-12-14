@@ -26,7 +26,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOST', '*')]
 
 
 # Application definition
@@ -127,7 +127,7 @@ STATIC_ROOT = '/www/static'
 STATICFILES_DIRS = [STATIC_DIR, ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/www/media'
 
 #Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
