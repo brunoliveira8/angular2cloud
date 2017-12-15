@@ -26,7 +26,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["wwww."+ os.environ['ALLOWED_HOST'], os.environ['ALLOWED_HOST'],]
+ALLOWED_HOSTS = ["www."+ os.environ['ALLOWED_HOST'], os.environ['ALLOWED_HOST'],]
 
 
 # Application definition
