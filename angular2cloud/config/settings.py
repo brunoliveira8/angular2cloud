@@ -28,6 +28,8 @@ DEBUG = os.getenv('DEBUG', 'true') in ['true', 'True', 'yes']
 
 ALLOWED_HOSTS = ["www."+ os.environ['ALLOWED_HOST'], os.environ['ALLOWED_HOST'],]
 
+ADMINS = [('Admin', 'cloudangular@gmail.com'),]
+MANAGERS = ADMINS
 
 # Application definition
 
@@ -133,6 +135,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 
 #Email Settings
+SERVER_EMAIL = "admin@angular2cloud.com"
+DEFAULT_FROM_EMAIL = "cloudangular@gmail.com"
+EMAIL_SUBJECT_PREFIX = "[Angular2Cloud] "
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND','django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST = os.getenv('EMAIL_HOST', None)
 EMAIL_PORT = os.getenv('EMAIL_PORT', None)
