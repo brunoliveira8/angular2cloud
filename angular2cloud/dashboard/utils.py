@@ -12,8 +12,19 @@ def run_container(project):
     client = docker.from_env()
     name = "{username}_{domain}".format(username=project.user.username, domain=project.domain)
     volumes = {dist_folder: {'bind': '/usr/share/nginx/html', "mode": "ro"}}
-    environment = {"VIRTUAL_HOST": "{subdomain}.{domain}".format(subdomain=project.domain, domain="angular2cloud.com")}
-    client.containers.run("a2c-angular-nginx", name=name, volumes=volumes, environment=environment, detach=True)
+    environment = {
+        "VIRTUAL_HOST": "{subdomain}.{domain}".format(subdomain=project.domain, domain="angular2cloud.com"),
+        "LETSENCRYPT_HOST": "{subdomain}.{domain}".format(subdomain=project.domain, domain="angular2cloud.com"),
+        "LETSENCRYPT_EMAIL": "cloudangular@gmail.com"
+    }
+    network = "reverse-proxy"
+    client.containers.run("a2c-angular-nginx",
+        name=name,
+        volumes=volumes,
+        environment=environment,
+        network=network,
+        detach=True
+    )
 
 
 def restart_container(project):
