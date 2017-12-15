@@ -18,6 +18,8 @@ services:
     env_file: .env
     environment:
       - ALLOWED_HOST=angular2cloud.com
+      - MEDIA_ROOT=/www/media
+      - DEBUG=false
     expose:
       - "8000"
     command: bash initialize.sh

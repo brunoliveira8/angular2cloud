@@ -3,12 +3,23 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
+from django.core.exceptions import ValidationError
 
 from .storage import OverwriteStorage
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return '{0}/{1}/dist.zip'.format(instance.user.username.lower(), instance.domain.lower(), filename)
+
+
+def validate_slug_blacklist(value):
+    blacklist = ['www', 'test']
+
+    if value in blacklist:
+        raise ValidationError(
+            '%(value)s is used as reserved word by the application.',
+            params={'value': value},
+        )
 
 # Create your models here.
 class Project(models.Model):
@@ -18,7 +29,11 @@ class Project(models.Model):
     )
     name = models.CharField(max_length = 120, help_text = "You can choose any name for your project." )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    domain = models.SlugField(unique=True, help_text="Your domain must be unique. Your project will be available at yourdomain.angular2cloud.com")
+    domain = models.SlugField(
+        unique=True,
+        validators=[validate_slug_blacklist],
+        help_text="Your domain must be unique. Your project will be available at yourdomain.angular2cloud.com"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(

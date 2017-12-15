@@ -24,7 +24,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DEBUG', 'true') in ['true', 'True', 'yes']
 
 ALLOWED_HOSTS = ["www."+ os.environ['ALLOWED_HOST'], os.environ['ALLOWED_HOST'],]
 
@@ -130,7 +130,7 @@ STATIC_ROOT = '/www/static'
 STATICFILES_DIRS = [STATIC_DIR, ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/www/media'
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 
 #Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
