@@ -36,54 +36,24 @@
         <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
-            <li class="nav-item"><a href="#about-us" class="nav-link link-scroll">About Us</a></li>
+            <li class="nav-item"><a href="#browser" class="nav-link link-scroll">How It Works</a></li>
             <li class="nav-item"><a href="#features" class="nav-link link-scroll">Features</a></li>
-            <li class="nav-item"><a href="#testimonials" class="nav-link link-scroll">Testimonials</a></li>
-            <li class="nav-item"><a href="text.html" class="nav-link">Text Page</a></li>
+            <li class="nav-item"><a href="{% url 'auth_login' %}" class="nav-link link-scroll">Login</a></li>
           </ul>
           <div class="navbar-text">
-            <!-- Button trigger modal--><a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a>
+            <!-- Button trigger modal--><a href="{% url 'registration_register' %}" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a>
           </div>
         </div>
       </nav>
     </header>
-    <!-- Modal-->
-    <div id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
-      <div role="document" class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 id="exampleModalLabel" class="modal-title">Sign Up Modal</h5>
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-          </div>
-          <div class="modal-body">
-            <form id="signupform" action="#">
-              <div class="form-group">
-                <label for="fullname">Full Name</label>
-                <input type="text" name="fullname" placeholder="Full Name" id="fullname">
-              </div>
-              <div class="form-group">
-                <label for="username">User Name</label>
-                <input type="text" name="username" placeholder="User Name" id="username">
-              </div>
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="text" name="email" placeholder="Email Address" id="email">
-              </div>
-              <div class="form-group">
-                <button type="submit" class="submit btn btn-primary btn-shadow btn-gradient">Signup</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <section id="hero" class="hero hero-home bg-gray">
       <div class="container">
         <div class="row d-flex">
           <div class="col-lg-6 text order-2 order-lg-1">
-            <h1>Landy &mdash; Bootstrap&nbsp;4 landing page</h1>
-            <p class="hero-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-            <div class="CTA"><a href="#features" class="btn btn-primary btn-shadow btn-gradient link-scroll">Discover More</a><a href="#" class="btn btn-outline-primary">Sign Up Now</a></div>
+            <h1>Angular to Cloud</h1>
+            <p class="hero-text">The easiest way to deploy Angular applications. We handle the server stuff so you can focus on code.</p>
+            <div class="CTA"><a href="#browser" class="btn btn-primary btn-shadow btn-gradient link-scroll">Discover More</a><a href="{% url 'registration_register' %}" class="btn btn-outline-primary">Sign Up Now</a></div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2"><img src="{% static 'landing-page/img/Macbook.png' %}" alt="..." class="img-fluid"></div>
         </div>
@@ -105,203 +75,57 @@
         </div>
         <div id="myTab" role="tablist" class="nav nav-tabs">
           <div class="row">
-            <div class="col-md-4"><a id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first" aria-expanded="true" class="nav-item nav-link active"> <span class="number">1</span>Choose any website to turn into an interactive pinboard for feedback</a></div>
-            <div class="col-md-4"><a id="nav-second-tab" data-toggle="tab" href="#nav-second" role="tab" aria-controls="nav-second" class="nav-item nav-link"> <span class="number">2</span>Choose any website to turn into an interactive pinboard for feedback</a></div>
-            <div class="col-md-4"><a id="nav-third-tab" data-toggle="tab" href="#nav-third" role="tab" aria-controls="nav-third" class="nav-item nav-link"> <span class="number">3</span>Choose any website to turn into an interactive pinboard for feedback</a></div>
+            <div class="col-md-4"><a id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first" aria-expanded="true" class="nav-item nav-link active"> <span class="number">1</span>Build your Angular application using the angular-cli.</a></div>
+            <div class="col-md-4"><a id="nav-second-tab" data-toggle="tab" href="#nav-second" role="tab" aria-controls="nav-second" class="nav-item nav-link"> <span class="number">2</span>Compact the dist folder as a zip file.</a></div>
+            <div class="col-md-4"><a id="nav-third-tab" data-toggle="tab" href="#nav-third" role="tab" aria-controls="nav-third" class="nav-item nav-link"> <span class="number">3</span>Create a new project and upload the zip file.</a></div>
           </div>
         </div>
       </div>
     </section>
-    <section id="about-us" class="about-us bg-gray">
+    <section id="features" class="features bg-gray">
       <div class="container">
-        <h2>About Us</h2>
-        <div class="row">
-          <p class="lead col-lg-10">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. or randomised words which don't look even slightly believable. </p>
-        </div><a href="#" class="btn btn-primary btn-shadow btn-gradient">Discover More</a>
-      </div>
-    </section>
-    <section id="features" class="features">
-      <div class="container">
-        <div class="row d-flex align-items-center">
+        <div class="row d-flex align-items-center" id="features-1">
           <div class="text col-lg-6 order-2 order-lg-1">
             <div class="icon"><img src="{% static 'landing-page/img/medal.svg' %}" alt="..." class="img-fluid"></div>
-            <h4>Your peace of mind is our business</h4>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p><a href="#" class="btn btn-primary btn-shadow btn-gradient">View More</a>
+            <h4>Deploy is simple as upload a file</h4>
+            <p>Generate the dist folder from your project, compact it as a zip file and upload the file on the platform. </p><a href="#features-2" class="btn btn-primary btn-shadow btn-gradient link-scroll">View More</a>
           </div>
           <div class="image col-lg-6 order-1 order-lg-2"><img src="{% static 'landing-page/img/feature-1.png' %}" alt="..." class="img-fluid"></div>
         </div>
-        <div class="row d-flex align-items-center">
+        <div class="row d-flex align-items-center" id="features-2">
           <div class="image col-lg-6"><img src="{% static 'landing-page/img/feature-2.png' %}" alt="..." class="img-fluid"></div>
           <div class="text col-lg-6">
             <div class="icon"><img src="{% static 'landing-page/img/hourglass.svg' %}" alt="..." class="img-fluid"></div>
-            <h4>Your peace of mind is our business</h4>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p><a href="#" class="btn btn-primary btn-shadow btn-gradient">View More</a>
+            <h4>Start, stop and update your application anytime you want</h4>
+            <p>Just press a button to stop or start your application. Moreover, you can upload a new source code of your Angular application anytime you want.  </p><a href="#features-3" class="btn btn-primary btn-shadow btn-gradient link-scroll">View More</a>
           </div>
         </div>
-        <div class="row d-flex align-items-center">
+        <div class="row d-flex align-items-center" id="features-3">
           <div class="text col-lg-6 order-2 order-lg-1">
             <div class="icon"><img src="{% static 'landing-page/img/cup.svg' %}" alt="..." class="img-fluid"></div>
-            <h4>Your peace of mind is our business</h4>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p><a href="#" class="btn btn-primary btn-shadow btn-gradient">View More</a>
+            <h4>Have a free subdomain to share your application</h4>
+            <p>You can choose a free subdomain and share your Angular application with the world. Your application could be found at subdomain.angular2cloud.com.</p><a href="#newsletter" class="btn btn-primary btn-shadow btn-gradient link-scroll">View More</a>
           </div>
           <div class="image col-lg-6 order-1 order-lg-2"><img src="{% static 'landing-page/img/feature-3.png' %}" alt="..." class="img-fluid"></div>
         </div>
       </div>
     </section>
-    <section id="extra-features" class="extra-features bg-primary">
+    <section id="newsletter" class="newsletter">
       <div class="container text-center">
-        <header>
-          <h2>More great features             </h2>
-          <div class="row">
-            <p class="lead col-lg-8 mx-auto">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-          </div>
-        </header>
-        <div class="grid row">
-          <div class="item col-lg-4 col-md-6">
-            <div class="icon"> <i class="icon-diploma"></i></div>
-            <h3 class="h5">Lorem Ipsum Dolor</h3>
-            <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-          </div>
-          <div class="item col-lg-4 col-md-6">
-            <div class="icon"> <i class="icon-folder-1"></i></div>
-            <h3 class="h5">Lorem Ipsum Dolor</h3>
-            <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-          </div>
-          <div class="item col-lg-4 col-md-6">
-            <div class="icon"> <i class="icon-gears"></i></div>
-            <h3 class="h5">Lorem Ipsum Dolor</h3>
-            <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-          </div>
-          <div class="item col-lg-4 col-md-6">
-            <div class="icon"> <i class="icon-management"></i></div>
-            <h3 class="h5">Lorem Ipsum Dolor</h3>
-            <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-          </div>
-          <div class="item col-lg-4 col-md-6">
-            <div class="icon"> <i class="icon-pie-chart"></i></div>
-            <h3 class="h5">Lorem Ipsum Dolor</h3>
-            <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-          </div>
-          <div class="item col-lg-4 col-md-6">
-            <div class="icon"> <i class="icon-quality"></i></div>
-            <h3 class="h5">Lorem Ipsum Dolor</h3>
-            <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="testimonials" class="testimonials">
-      <div class="container">
-        <header class="text-center no-margin-bottom">
-          <h2>Happy Clients</h2>
-          <p class="lead">There are many variations of passages of Lorem Ipsum available, but the majority have</p>
-        </header>
-        <div class="owl-carousel owl-theme testimonials-slider">
-          <div class="item-holder">
-            <div class="item">
-              <div class="avatar"><img src="{% static 'landing-page/img/avatar-3.jpg' %}" alt="..." class="img-fluid"></div>
-              <div class="text">
-                <div class="quote"><img src="{% static 'landing-page/img/quote.svg' %}" alt="..." class="img-fluid"></div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Jessica Watson</strong>
-              </div>
-            </div>
-          </div>
-          <div class="item-holder">
-            <div class="item">
-              <div class="avatar"><img src="{% static 'landing-page/img/avatar-5.jpg' %}" alt="..." class="img-fluid"></div>
-              <div class="text">
-                <div class="quote"><img src="{% static 'landing-page/img/quote.svg' %}" alt="..." class="img-fluid"></div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Sarrah Wood</strong>
-              </div>
-            </div>
-          </div>
-          <div class="item-holder">
-            <div class="item">
-              <div class="avatar"><img src="{% static 'landing-page/img/avatar-3.jpg' %}" alt="..." class="img-fluid"></div>
-              <div class="text">
-                <div class="quote"><img src="{% static 'landing-page/img/quote.svg' %}" alt="..." class="img-fluid"></div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Jessica Watson</strong>
-              </div>
-            </div>
-          </div>
-          <div class="item-holder">
-            <div class="item">
-              <div class="avatar"><img src="{% static 'landing-page/img/avatar-5.jpg' %}" alt="..." class="img-fluid"></div>
-              <div class="text">
-                <div class="quote"><img src="{% static 'landing-page/img/quote.svg' %}" alt="..." class="img-fluid"></div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Sarrah Wood</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="newsletter" class="newsletter bg-gray">
-      <div class="container text-center">
-        <h2>Subscribe to Newsletter</h2>
-        <p class="lead">There are many variation passages of lorem ipsum, but the majority have</p>
-        <div class="form-holder">
-          <form id="newsletterForm" action="#">
-            <div class="form-group">
-              <input type="email" name="email" id="email" placeholder="Enter Your Email Address">
-              <button type="submit" class="btn btn-primary btn-gradient submit">Subscribe</button>
-            </div>
-          </form>
-        </div>
+        <h2>Deploy your first application now!</h2>
+        <p class="lead"> No credit card is required.</p>
+        <a href="{% url 'registration_register' %}" class="btn btn-lg btn-primary btn-gradient submit">Sign up</a>
       </div>
     </section>
     <div id="scrollTop">
       <div class="d-flex align-items-center justify-content-end"><i class="fa fa-long-arrow-up"></i>To Top</div>
     </div>
     <footer class="main-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6"><a href="#" class="brand">Landy</a>
-            <ul class="contact-info list-unstyled">
-              <li><a href="mailto:sales@landy.com">Sales@Landy.com</a></li>
-              <li><a href="tel:123456789">+00 123 456 789</a></li>
-            </ul>
-            <ul class="social-icons list-inline">
-              <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5>Selected Cases</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#">Guess Conntect</a></li>
-              <li> <a href="#">Postly</a></li>
-              <li> <a href="#">Iris Vor Arnim</a></li>
-              <li> <a href="#">Yapital</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5>Selected Cases</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#">Guess Conntect</a></li>
-              <li> <a href="#">Postly</a></li>
-              <li> <a href="#">Iris Vor Arnim</a></li>
-              <li> <a href="#">Yapital</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5>Selected Cases</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#">Guess Conntect</a></li>
-              <li> <a href="#">Postly</a></li>
-              <li> <a href="#">Iris Vor Arnim</a></li>
-              <li> <a href="#">Yapital</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
       <div class="copyrights">
         <div class="container">
           <div class="row">
             <div class="col-md-7">
-              <p>&copy; 2017 Landy.com. All rights reserved.                        </p>
+              <p>&copy; 2017 Angular to Cloud. All rights reserved.                        </p>
             </div>
             <div class="col-md-5 text-right">
               <p>Template By <a href="https://bootstrapious.com/" class="external">Bootstrapious</a>  </p>
