@@ -14,8 +14,10 @@ from .utils import start_container, stop_container
 
 # Create your views here.
 def index(request):
-    return redirect('project-list')
-
+    if request.user.is_authenticated:
+        return redirect('project-list')
+    else:
+        return  render(request, 'landing_page.html')
 
 @method_decorator(login_required, name='dispatch')
 class ProjectList(ListView):
