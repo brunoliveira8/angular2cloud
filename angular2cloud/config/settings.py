@@ -150,3 +150,4 @@ ACCOUNT_ACTIVATION_DAYS = 30 # One-week activation window; you may, of course, u
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
+REGISTRATION_FORM = 'dashboard.forms.CustomRegistrationForm'

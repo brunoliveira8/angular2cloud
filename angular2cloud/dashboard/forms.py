@@ -1,0 +1,4 @@
+from registration.forms import RegistrationFormTermsOfService, RegistrationFormUniqueEmail
+
+class CustomRegistrationForm(RegistrationFormTermsOfService, RegistrationFormUniqueEmail):
+    pass
