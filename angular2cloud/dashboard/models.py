@@ -9,7 +9,7 @@ from .storage import OverwriteStorage
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return '{0}/{1}/dist.zip'.format(instance.user.username.lower(), instance.domain.lower(), filename)
+    return '{0}/{1}/dist.zip'.format(instance.user.username, instance.domain.lower(), filename)
 
 
 def validate_slug_blacklist(value):
