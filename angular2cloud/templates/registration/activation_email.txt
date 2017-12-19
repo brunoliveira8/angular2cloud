@@ -1,9 +1,8 @@
 {% load i18n %}
 {% blocktrans with site_name=site.name %}
-Hi there!
+Hi there! I am Ben from Angular to Cloud.
 
-You (or someone pretending to be you) have asked to register an account at
-{{ site_name }}.  If this wasn't you, please ignore this email
+You have asked to register an account at {{ site_name }}. If this wasn't you, please ignore this email
 and your address will be removed from our records.
 {% endblocktrans %}
 {% blocktrans %}
@@ -16,7 +15,7 @@ http://{{site.domain}}{% url 'registration_activate' activation_key %}
 {% blocktrans with site_name=site.name %}
 Sincerely,
 
-Angular to Cloud Team
+Ben.
 {% endblocktrans %}
 
 

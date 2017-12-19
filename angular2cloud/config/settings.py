@@ -136,7 +136,7 @@ MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 
 #Email Settings
 SERVER_EMAIL = "admin@angular2cloud.com"
-DEFAULT_FROM_EMAIL = "cloudangular@gmail.com"
+DEFAULT_FROM_EMAIL = "Ben from Angular2Cloud <cloudangular@gmail.com>"
 EMAIL_SUBJECT_PREFIX = "[Angular2Cloud] "
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND','django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST = os.getenv('EMAIL_HOST', None)
