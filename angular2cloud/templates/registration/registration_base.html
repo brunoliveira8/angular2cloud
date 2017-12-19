@@ -2,6 +2,7 @@
 {% load static %}
 <html>
   <head>
+    {% include 'analytics.html' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Angular to Cloud</title>
@@ -65,7 +66,6 @@
     <script src="{% static 'vendor/jquery.cookie/jquery.cookie.js' %}"> </script>
     <script src="{% static 'vendor/jquery-validation/jquery.validate.min.js' %}"></script>
     <script src="{% static 'js/front.js' %}"></script>
-    {% include 'analytics.html' %}
     {% include 'drift_chat.html' %}
   </body>
 </html>

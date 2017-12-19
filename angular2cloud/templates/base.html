@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    {% include 'analytics.html' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Angular 2 Cloud</title>
@@ -56,7 +57,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="{% static 'js/charts-home.js' %}"></script>
     <script src="{% static 'js/front.js' %}"></script>
-    {% include 'analytics.html' %}
     {% include 'drift_chat.html' %}
   </body>
 </html>
