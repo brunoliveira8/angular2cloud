@@ -27,9 +27,10 @@ class ProjectList(ListView):
 
 
 @method_decorator(login_required, name='dispatch')
-class ProjectCreate(CreateView):
+class ProjectCreate(SuccessMessageMixin, CreateView):
     model = Project
     fields = ['name', 'domain', 'source']
+    success_message = "The project was created successfully! It may take a few seconds to the subdomain be available."
 
     def form_valid(self, form):
         n_projects = len(Project.objects.filter(user=self.request.user))
