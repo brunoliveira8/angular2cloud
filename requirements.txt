@@ -1,4 +1,4 @@
-Django==1.11
+Django==1.11.8
 certifi==2017.11.5
 chardet==3.0.4
 django-registration-redux==2.0
