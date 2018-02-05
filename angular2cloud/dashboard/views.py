@@ -1,6 +1,7 @@
 import docker
 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView
@@ -13,15 +14,23 @@ from .models import Project
 from .utils import start_container, stop_container
 
 # Create your views here.
+
+
 def index(request):
     if request.user.is_authenticated:
         return redirect('project-list')
     else:
-        return  render(request, 'landing_page.html')
+        return render(request, 'landing_page.html')
+
+
+def healthcheck(request):
+    return HttpResponse()
+
 
 @method_decorator(login_required, name='dispatch')
 class ProjectList(ListView):
     context_object_name = 'projects'
+
     def get_queryset(self):
         return Project.objects.filter(user=self.request.user)
 

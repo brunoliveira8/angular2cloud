@@ -18,15 +18,19 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from dashboard.views import index, ProjectList, ProjectCreate, ProjectDelete, ProjectUpdate, ProjectActivate
+from dashboard.views import (index, healthcheck, ProjectList,
+                             ProjectCreate, ProjectDelete, ProjectUpdate, ProjectActivate)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', index, name='index'),
+    url('^healthcheck', healthcheck, name='health-check'),
     url('project/list/', ProjectList.as_view(), name='project-list'),
     url('project/add/', ProjectCreate.as_view(), name='project-add'),
-    url('project/update/(?P<slug>[-\w]+)/', ProjectUpdate.as_view(), name='project-update'),
-    url('project/delete/(?P<slug>[-\w]+)/', ProjectDelete.as_view(), name='project-delete'),
+    url('project/update/(?P<slug>[-\w]+)/',
+        ProjectUpdate.as_view(), name='project-update'),
+    url('project/delete/(?P<slug>[-\w]+)/',
+        ProjectDelete.as_view(), name='project-delete'),
     url('project/activate/', ProjectActivate.as_view(), name='project-activate'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
