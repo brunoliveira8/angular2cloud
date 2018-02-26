@@ -33,15 +33,18 @@
       {% include "header.html" %}
       <div class="page-content d-flex align-items-stretch">
         <!-- Side Navbar -->
+        {% if user.is_authenticated %}
         {% include "sidebar.html" %}
+        {% endif %}
         <div class="content-inner">
           <!-- Page Header-->
-                    <!-- Page Header-->
+          {% block container_page_header %}
           <header class="page-header">
             <div class="container-fluid">
               <h2 class="no-margin-bottom">{% block page_header %}{% endblock %}</h2>
             </div>
           </header>
+          {% endblock %}
           {% block content %}{% endblock %}
           <!-- Page Footer-->
           {% include 'footer.html' %}

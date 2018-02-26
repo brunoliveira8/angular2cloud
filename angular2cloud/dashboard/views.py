@@ -27,6 +27,10 @@ def healthcheck(request):
     return HttpResponse()
 
 
+def tos(request):
+    return render(request, 'tos.html')
+
+
 @method_decorator(login_required, name='dispatch')
 class ProjectList(ListView):
     context_object_name = 'projects'

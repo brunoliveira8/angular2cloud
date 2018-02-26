@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from dashboard.views import (index, healthcheck, ProjectList,
+from dashboard.views import (index, healthcheck, tos, ProjectList,
                              ProjectCreate, ProjectDelete, ProjectUpdate, ProjectActivate)
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', index, name='index'),
     url('^healthcheck', healthcheck, name='health-check'),
+    url('^terms-of-service', tos, name='tos'),
     url('project/list/', ProjectList.as_view(), name='project-list'),
     url('project/add/', ProjectCreate.as_view(), name='project-add'),
     url('project/update/(?P<slug>[-\w]+)/',
