@@ -46,10 +46,13 @@ def stop_container(project):
 
 
 def remove_container(project):
-    client = docker.from_env()
-    ct = client.containers.get("{username}_{domain}".format(username=project.user.username, domain=project.domain))
-    ct.stop()
-    ct.remove()
+    try:
+        client = docker.from_env()
+        ct = client.containers.get("{username}_{domain}".format(username=project.user.username, domain=project.domain))
+        ct.stop()
+        ct.remove()
+    except:
+        pass
 
 
 def unzip(project):
