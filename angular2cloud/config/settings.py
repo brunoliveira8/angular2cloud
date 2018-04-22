@@ -151,6 +151,7 @@ EMAIL_USE_TLS = True
 #Registration
 ACCOUNT_ACTIVATION_DAYS = 30 # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True
+REGISTRATION_OPEN = False
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
 REGISTRATION_FORM = 'dashboard.forms.CustomRegistrationForm'
